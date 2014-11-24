@@ -64,10 +64,10 @@ public class JH_Enemy_AI : MonoBehaviour
   void Start(){
     // Set the starting direction based on gui selection
     if( currentDirection == directions.left ){
-        currentDirectionVector = new Vector3(-1,0,0); // Left
+        currentDirectionVector = Vector3.left; // Left
     }
     else{
-      currentDirectionVector = new Vector3(1,0,0); // Right
+      currentDirectionVector = Vector3.right; // Right
     }
 
     // Find the player game object
@@ -85,7 +85,7 @@ public class JH_Enemy_AI : MonoBehaviour
   
   // Collisions between the enemy ray and other tags
   void OnTriggerEnter2D(Collider2D other){  
-    if( other.gameObject.tag == "Edge Collider" || other.gameObject.tag == "Enemy" ){
+    if( other.gameObject.CompareTag("Edge Collider") || other.gameObject.CompareTag("Enemy") ){
       changeDirection();
     }  
   }
@@ -93,8 +93,8 @@ public class JH_Enemy_AI : MonoBehaviour
   void rayCollision(RaycastHit2D lineOfSight){
     if( lineOfSight.collider != null )
     {
-      if( lineOfSight.collider.tag == "Player" ){ //If enemy sees the player go into attack mode
-        enemyAlertStatus = alertStatus.attacking;  
+      if( lineOfSight.collider.CompareTag("Player") ){ //If enemy sees the player go into attack mode
+        enemyAlertStatus = alertStatus.attacking;
 				Shoot();
       }
 			else{
@@ -106,11 +106,11 @@ public class JH_Enemy_AI : MonoBehaviour
   void changeDirection(){
     if( currentDirection == directions.left ){
       currentDirection = directions.right;
-      currentDirectionVector = new Vector3(1,0,0); // Right
+      currentDirectionVector = Vector3.right; // Right
     }
     else{
       currentDirection = directions.left;
-      currentDirectionVector = new Vector3(-1,0,0); // Left
+      currentDirectionVector = Vector3.left; // Left
     }
   }
 

@@ -13,10 +13,12 @@ public class GAMESETTINGS : MonoBehaviour {
 	  CurrentScene ="00_00StartScene";
 	}
 	
+	/*
 	// Update is called once per frame
 	void Update () {
 	
 	}
+	*/
 	
 	void Awake (){
 	

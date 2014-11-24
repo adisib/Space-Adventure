@@ -70,30 +70,32 @@ public class ShotScript : MonoBehaviour {
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 		Vector2 firePointPosition = new Vector2(firePoint.position.x,firePoint.position.y);
 		RaycastHit2D hit = Physics2D.Raycast(firePointPosition,mousePosition-firePointPosition, 100, whatToHit);
-		if(DebugShot==true){
-			Debug.DrawLine(firePointPosition, (mousePosition-firePointPosition) *100);
-		}
-		if (hit.collider != null){
-			if (hit.collider.gameObject.layer == 10){
-				if(DebugShot == true){
-					Debug.DrawLine(firePointPosition,hit.point,Color.red);
-					Debug.Log("Hit:"+hit.collider.name);
-					}
+		if(hit!=null){
+			if(DebugShot==true){
+				Debug.DrawLine(firePointPosition, (mousePosition-firePointPosition) *100);
 			}
-			else{
-				if(DebugShot==true){
-					Debug.DrawLine(firePointPosition,hit.point,Color.red);
-					Debug.Log("Hit:"+hit.collider.name);
+			if (hit.collider != null){
+				if (hit.collider.gameObject.layer == 10){
+					if(DebugShot == true){
+						Debug.DrawLine(firePointPosition,hit.point,Color.red);
+						Debug.Log("Hit:"+hit.collider.name);
+						}
 				}
-				//Upscale
-				MaxAndMinSize max = hit.collider.GetComponent<MaxAndMinSize>();
-				Vector3 s = hit.collider.gameObject.transform.localScale;
-				if(max.Max.x > s.x && max.Max.y > s.y){
-					s.x += .1f;
-					s.y += .1f;
-					hit.collider.gameObject.transform.localScale = s;
-					//Increases Object Mass
-					hit.collider.GetComponent<Rigidbody2D>().mass += .1f;
+				else{
+					if(DebugShot==true){
+						Debug.DrawLine(firePointPosition,hit.point,Color.red);
+						Debug.Log("Hit:"+hit.collider.name);
+					}
+					//Upscale
+					MaxAndMinSize max = hit.collider.GetComponent<MaxAndMinSize>();
+					Vector3 s = hit.collider.gameObject.transform.localScale;
+					if(max.Max.x > s.x && max.Max.y > s.y){
+						s.x += .1f;
+						s.y += .1f;
+						hit.collider.gameObject.transform.localScale = s;
+						//Increases Object Mass
+						hit.collider.GetComponent<Rigidbody2D>().mass += .1f;
+					}
 				}
 			}
 		}
@@ -108,30 +110,32 @@ public class ShotScript : MonoBehaviour {
 		Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x,Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
 		Vector2 firePointPosition = new Vector2(firePoint.position.x,firePoint.position.y);
 		RaycastHit2D hit = Physics2D.Raycast(firePointPosition,mousePosition-firePointPosition, 100, whatToHit);
-		if(DebugShot==true){
-			Debug.DrawLine(firePointPosition, (mousePosition-firePointPosition) *100);
-		}
-		if (hit.collider != null){
-			if (hit.collider.gameObject.layer == 10){
-				if(DebugShot==true){
-					Debug.DrawLine(firePointPosition,hit.point,Color.green);
-					Debug.Log("Hit:"+hit.collider.name);
-					}
+		if(hit!=null){
+			if(DebugShot==true){
+				Debug.DrawLine(firePointPosition, (mousePosition-firePointPosition) *100);
 			}
-			else{
-				if(DebugShot==true){
-					Debug.DrawLine(firePointPosition,hit.point,Color.green);
-					Debug.Log("Hit:"+hit.collider.name);
+			if (hit.collider != null){
+				if (hit.collider.gameObject.layer == 10){
+					if(DebugShot==true){
+						Debug.DrawLine(firePointPosition,hit.point,Color.green);
+						Debug.Log("Hit:"+hit.collider.name);
+						}
 				}
-				//DownScales
-				MaxAndMinSize min = hit.collider.GetComponent<MaxAndMinSize>();
-				Vector3 s = hit.collider.gameObject.transform.localScale;
-				if(min.Min.x < s.x && min.Min.y < s.y){
-					s.x -= .1f;
-					s.y -= .1f;
-					hit.collider.gameObject.transform.localScale = s;
-					//Decreases Object Mass
-					hit.collider.GetComponent<Rigidbody2D>().mass -= .1f;
+				else{
+					if(DebugShot==true){
+						Debug.DrawLine(firePointPosition,hit.point,Color.green);
+						Debug.Log("Hit:"+hit.collider.name);
+					}
+					//DownScales
+					MaxAndMinSize min = hit.collider.GetComponent<MaxAndMinSize>();
+					Vector3 s = hit.collider.gameObject.transform.localScale;
+					if(min.Min.x < s.x && min.Min.y < s.y){
+						s.x -= .1f;
+						s.y -= .1f;
+						hit.collider.gameObject.transform.localScale = s;
+						//Decreases Object Mass
+						hit.collider.GetComponent<Rigidbody2D>().mass -= .1f;
+					}
 				}
 			}
 		}

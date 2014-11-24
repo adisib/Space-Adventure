@@ -8,8 +8,8 @@ public class TelekineticShot : MonoBehaviour {
 	public bool DebugShot; //Debug On/Off
 	float timeToFire=0;
 	Transform firePoint;
-	
-	
+
+
 	void Awake() {
 		firePoint=transform.FindChild("FirePoint");
 		if (firePoint==null){
